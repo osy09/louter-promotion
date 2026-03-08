@@ -854,7 +854,22 @@ body {
 
     .section-hero { height: 1168px; }
     .section-about { height: 788px; }
-    .section-service { height: 748px; }
+    .section-service {
+        height: 748px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .section-service::-webkit-scrollbar {
+        height: 3px;
+    }
+    .section-service::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .section-service::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.25);
+        border-radius: 2px;
+    }
     .section-roadmap { height: 1477px; }
     .section-why { height: 693px; }
     .section-recruit { height: 1028px; }
@@ -1011,10 +1026,10 @@ body {
 
     .service-content {
         position: absolute;
-        left: 50%;
+        left: 30px;
         top: 140px;
-        width: 320px;
-        transform: translateX(-50%);
+        width: auto;
+        transform: none;
         gap: 70px;
     }
 
