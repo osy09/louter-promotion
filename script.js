@@ -1,4 +1,3 @@
-// Scroll reveal animation: elements slide up as they enter the viewport.
 const revealSelectors = [
     '.hero-left',
     '.hero-right',
@@ -43,7 +42,6 @@ if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     );
 
     revealElements.forEach((el, index) => {
-        // Create gentle stagger while keeping motion subtle.
         el.dataset.revealDelay = String((index % 6) * 70);
         revealObserver.observe(el);
     });
