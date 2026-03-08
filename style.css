@@ -763,7 +763,19 @@ body {
         max-width: none;
     }
 
-    .item-union-deco,
+    /* Keep the upper ladder decoration responsive in ABOUT */
+    .item-union-deco {
+        display: block;
+        left: auto;
+        right: 12px;
+        top: 0;
+        width: 22px;
+        height: 100px;
+        transform: scaleY(-1) rotate(180deg);
+        opacity: 0.85;
+    }
+
+    /* Hide the far-right list ladder on smaller screens to avoid overlap */
     .list-union-deco {
         display: none;
     }
@@ -817,6 +829,11 @@ body {
     .recruit-card {
         min-width: calc(50% - 15px);
     }
+
+    /* Preserve card order on responsive: 열정 -> 정성 -> 예의 */
+    .recruit-grid .recruit-card:nth-child(1) { order: 1; }
+    .recruit-grid .recruit-card:nth-child(2) { order: 2; }
+    .recruit-grid .recruit-card:nth-child(3) { order: 3; }
 }
 
 @media (max-width: 767px) {
@@ -890,6 +907,13 @@ body {
         display: none;
     }
 
+    .item-union-deco {
+        right: 8px;
+        width: 16px;
+        height: 72px;
+        opacity: 0.65;
+    }
+
     .item-title {
         white-space: normal;
         font-size: 20px;
@@ -924,6 +948,11 @@ body {
         flex-direction: column;
         gap: 16px;
     }
+
+    /* Keep explicit order even in single-column layout */
+    .recruit-grid .recruit-card:nth-child(1) { order: 1; }
+    .recruit-grid .recruit-card:nth-child(2) { order: 2; }
+    .recruit-grid .recruit-card:nth-child(3) { order: 3; }
 
     .recruit-card {
         width: 100%;
