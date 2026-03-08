@@ -421,10 +421,10 @@ body {
     color: #000000;
     line-height: normal;
 }
-.feature-img-placeholder {
-    width: 97px;
-    height: 97px;
-    background-color: #D1D1D1;
+.feature-img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
     flex-shrink: 0;
 }
 .feature-text {
