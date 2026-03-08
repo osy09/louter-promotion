@@ -1,0 +1,937 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard/dist/web/static/pretendard.css');
+
+/* ===== FONTS ===== */
+@font-face {
+    font-family: 'Paperlogy';
+    src: url('https://cdn.jsdelivr.net/gh/Freesentation/paperlogy@main/woff2/Paperlogy-4Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Paperlogy';
+    src: url('https://cdn.jsdelivr.net/gh/Freesentation/paperlogy@main/woff2/Paperlogy-6SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Paperlogy';
+    src: url('https://cdn.jsdelivr.net/gh/Freesentation/paperlogy@main/woff2/Paperlogy-7Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Paperlogy';
+    src: url('https://cdn.jsdelivr.net/gh/Freesentation/paperlogy@main/woff2/Paperlogy-8ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+/* ===== RESET ===== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== BASE ===== */
+body {
+    font-family: 'Paperlogy', sans-serif;
+    min-width: 1512px;
+    overflow-x: auto;
+}
+
+/* ===== SECTIONS ===== */
+.section-hero,
+.section-about,
+.section-service,
+.section-roadmap,
+.section-why,
+.section-recruit {
+    position: relative;
+    width: 1512px;
+    overflow: hidden;
+}
+.section-hero    { height: 982px;  background-color: #FFD600; }
+.section-about   { height: 982px;  background-color: #FEF9E0; }
+.section-service { height: 814px;  background-color: #FFD600; }
+.section-roadmap { height: 1569px; background-color: #000000; }
+.section-why     { height: 911px;  background-color: #FFFFFF; }
+.section-recruit { height: 911px;  background-color: #FFD600; }
+
+/* Wide desktop: lock 1512px canvas in center, extend section bg to both sides */
+@media (min-width: 1513px) {
+    body {
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    .section-hero,
+    .section-about,
+    .section-service,
+    .section-roadmap,
+    .section-why,
+    .section-recruit {
+        width: 1512px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .section-hero {
+        box-shadow: 0 0 0 100vmax #FFD600;
+        clip-path: inset(0 -100vmax);
+    }
+
+    .section-about {
+        box-shadow: 0 0 0 100vmax #FEF9E0;
+        clip-path: inset(0 -100vmax);
+    }
+
+    .section-service {
+        box-shadow: 0 0 0 100vmax #FFD600;
+        clip-path: inset(0 -100vmax);
+    }
+
+    .section-roadmap {
+        box-shadow: 0 0 0 100vmax #000000;
+        clip-path: inset(0 -100vmax);
+    }
+
+    .section-why {
+        box-shadow: 0 0 0 100vmax #FFFFFF;
+        clip-path: inset(0 -100vmax);
+    }
+
+    .section-recruit {
+        box-shadow: 0 0 0 100vmax #FFD600;
+        clip-path: inset(0 -100vmax);
+    }
+}
+
+/* ===== BADGE ===== */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: normal;
+    white-space: nowrap;
+    width: fit-content;
+    min-width: 0;
+    flex: 0 0 auto;
+    overflow: hidden;
+}
+.badge-yellow { background-color: #FFD600; color: #000000; }
+.badge-dark   { background-color: #000000; color: #FFD600; }
+
+/* ===== SHARED TEXT ===== */
+.text-orange { color: #FF6E00; font-weight: 700; }
+
+/* ===== HERO ===== */
+.hero-left {
+    position: absolute;
+    left: 198px;
+    top: 185px;
+    width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 55px;
+}
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background-color: #000000;
+    color: #FFD600;
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: normal;
+    width: fit-content;
+}
+.hero-badge-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+}
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+    width: 100%;
+}
+.hero-logo {
+    width: 315px;
+    height: 80px;
+    display: block;
+    flex-shrink: 0;
+    object-fit: contain;
+    object-position: left center;
+}
+.hero-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 90px;
+    line-height: normal;
+}
+.hero-title-outline {
+    color: transparent;
+    -webkit-text-stroke: 3px #000000;
+}
+.hero-title-solid {
+    color: #000000;
+}
+.hero-desc {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 30px;
+    color: #585542;
+}
+.hero-right {
+    position: absolute;
+    left: 838px;
+    top: 341px;
+    width: 492px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+}
+.stat-card {
+    height: 100px;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.stat-dark   { background-color: #000000; color: #FFD600; }
+.stat-cream  { background-color: #FFF3B2; color: #000000; }
+.stat-border { border: 1px solid #000000; color: #000000; background: transparent; }
+.stat-golden { background-color: #D1B317; color: #000000; }
+.stat-num {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: normal;
+}
+.stat-label {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: normal;
+}
+.switch-pill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 59px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: #000000;
+    color: #FFD600;
+    overflow: hidden;
+    width: 100%;
+}
+.switch-name {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: normal;
+    white-space: nowrap;
+}
+.switch-sub {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+/* ===== ABOUT ===== */
+.about-content {
+    position: absolute;
+    left: 156px;
+    top: 98px;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 84px;
+}
+.about-header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 616px;
+}
+.about-title {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: normal;
+    color: #000000;
+}
+
+.about-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.about-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 40px 30px;
+    border-bottom: 1px solid #000000;
+    overflow: hidden;
+}
+.about-item-first {
+    border-top: 1px solid #000000;
+}
+.item-num {
+    flex-shrink: 0;
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #9A9686;
+    white-space: nowrap;
+    line-height: normal;
+}
+.item-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.item-title {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 23px;
+    color: #000000;
+    white-space: nowrap;
+    line-height: normal;
+}
+.item-desc {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #000000;
+    white-space: normal;
+    line-height: normal;
+}
+.item-bullet {
+    position: absolute;
+    left: 36px;
+    top: 61px;
+    width: 8px;
+    height: 10px;
+    pointer-events: none;
+}
+.about-item:not(.about-item-first) .item-bullet {
+    top: 62px;
+}
+.item-union-deco {
+    position: absolute;
+    left: 929.89px;
+    top: 0;
+    width: 29.752px;
+    height: 134px;
+    transform: scaleY(-1) rotate(180deg);
+    pointer-events: none;
+}
+.list-union-deco {
+    position: absolute;
+    left: 1043.56px;
+    top: 1px;
+    width: 29.53px;
+    height: 133px;
+    transform: scaleY(-1) rotate(180deg);
+    pointer-events: none;
+}
+
+/* ===== OUR SERVICE ===== */
+.service-content {
+    position: absolute;
+    left: 156px;
+    top: 113px;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 84px;
+}
+.service-header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 264px;
+}
+.service-titles {
+    display: flex;
+    flex-direction: column;
+}
+.service-title-main {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    color: #000000;
+    line-height: normal;
+    white-space: nowrap;
+}
+.service-title-switch {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    color: transparent;
+    -webkit-text-stroke: 2px #000000;
+    letter-spacing: 2.5px;
+    line-height: normal;
+    white-space: nowrap;
+}
+.feature-grid {
+    display: flex;
+    gap: 20px;
+    height: 330px;
+    width: 100%;
+}
+.feature-card {
+    flex: 1;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    min-width: 0;
+}
+.feature-label {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #000000;
+    line-height: normal;
+}
+.feature-img-placeholder {
+    width: 97px;
+    height: 97px;
+    background-color: #D1D1D1;
+    flex-shrink: 0;
+}
+.feature-text {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.feature-title {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #000000;
+    white-space: nowrap;
+    line-height: normal;
+}
+.feature-desc {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #000000;
+    line-height: normal;
+    white-space: pre-wrap;
+}
+
+/* ===== ROADMAP ===== */
+.roadmap-header {
+    position: absolute;
+    left: 162px;
+    top: 130px;
+    width: 616px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.roadmap-title {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: normal;
+}
+
+.roadmap-margin {
+    padding-bottom: 0px;
+}
+
+.roadmap-white  { color: #FFFFFF; }
+.roadmap-yellow { color: #FFD600; }
+.timeline-path {
+    position: absolute;
+    left: 743px;
+    top: 440px;
+    width: 29px;
+    height: 993px;
+}
+.timeline-card {
+    position: absolute;
+    width: 321px;
+    border: 1px solid #FFD600;
+    border-radius: 10px;
+    padding: 32px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+}
+.tl-period {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    color: #FFD600;
+    line-height: normal;
+}
+.tl-heading {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #FFFFFF;
+    line-height: normal;
+}
+.tl-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.tl-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 18px;
+    overflow: hidden;
+}
+.tl-arrow {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #FFD600;
+    flex-shrink: 0;
+    line-height: normal;
+}
+.tl-item span:last-child {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #FFFFFF;
+    white-space: nowrap;
+    line-height: normal;
+}
+
+/* ===== WHY LOUTER ===== */
+.why-content {
+    position: absolute;
+    left: 156px;
+    top: 116px;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 84px;
+}
+.why-header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 264px;
+}
+.why-title {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    letter-spacing: 2.5px;
+    color: #000000;
+    line-height: normal;
+    white-space: nowrap;
+}
+.why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    height: 410px;
+    width: 100%;
+}
+.why-card {
+    background-color: #FFFFFF;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.why-card-title {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #000000;
+    line-height: normal;
+    white-space: nowrap;
+}
+.why-card-desc {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+/* ===== WHO WE WANT ===== */
+.recruit-content {
+    position: absolute;
+    left: 156px;
+    top: 138px;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 84px;
+}
+.recruit-header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 438px;
+}
+.recruit-title {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    letter-spacing: 2.5px;
+    color: #000000;
+    line-height: normal;
+}
+.recruit-grid {
+    display: flex;
+    gap: 30px;
+    height: 366px;
+    width: 100%;
+}
+.recruit-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 49px 30px;
+    overflow: hidden;
+    min-width: 0;
+}
+.recruit-label {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #000000;
+    line-height: normal;
+    white-space: nowrap;
+}
+.recruit-img {
+    width: 161px;
+    height: 177px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+.recruit-img-short {
+    height: 161px;
+}
+.recruit-desc {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    color: #000000;
+    line-height: 18px;
+    text-align: center;
+    max-width: 198px;
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal-up {
+    opacity: 0;
+    transform: translate3d(0, 42px, 0);
+    transition: opacity 640ms cubic-bezier(0.22, 1, 0.36, 1),
+                transform 640ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-up.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-up,
+    .reveal-up.is-visible {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+    body {
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    .section-hero,
+    .section-about,
+    .section-service,
+    .section-roadmap,
+    .section-why,
+    .section-recruit {
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        padding: 72px 24px;
+    }
+
+    .hero-left,
+    .hero-right,
+    .about-content,
+    .service-content,
+    .roadmap-header,
+    .why-content,
+    .recruit-content {
+        position: static;
+        left: auto;
+        top: auto;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-hero {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .hero-left,
+    .hero-right,
+    .about-content,
+    .service-content,
+    .why-content,
+    .recruit-content {
+        gap: 48px;
+    }
+
+    .hero-titles {
+        font-size: clamp(54px, 9vw, 90px);
+        gap: 18px;
+    }
+
+    .hero-title-outline {
+        -webkit-text-stroke-width: 2px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .about-header,
+    .service-header,
+    .why-header,
+    .recruit-header {
+        width: 100%;
+        max-width: none;
+    }
+
+    .item-union-deco,
+    .list-union-deco {
+        display: none;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        height: auto;
+    }
+
+    .feature-card {
+        min-height: 300px;
+    }
+
+    .timeline-path {
+        display: none;
+    }
+
+    .timeline-card {
+        position: relative;
+        left: auto !important;
+        top: auto !important;
+        width: 100%;
+        max-width: none;
+        margin-bottom: 20px;
+    }
+
+    .roadmap-title {
+        font-size: clamp(34px, 6vw, 50px);
+    }
+
+    .roadmap-margin {
+    padding-bottom: 40px;
+    }
+
+    .why-grid {
+        height: auto;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .why-card-desc {
+        white-space: normal;
+    }
+
+    .recruit-grid {
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+    .recruit-card {
+        min-width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 767px) {
+    .section-hero,
+    .section-about,
+    .section-service,
+    .section-roadmap,
+    .section-why,
+    .section-recruit {
+        padding: 56px 16px;
+    }
+
+    .hero-left,
+    .hero-right,
+    .about-content,
+    .service-content,
+    .why-content,
+    .recruit-content {
+        gap: 36px;
+    }
+
+    .hero-titles {
+        font-size: clamp(40px, 12vw, 54px);
+        gap: 12px;
+    }
+
+    .hero-desc {
+        font-size: 16px;
+        line-height: 26px;
+    }
+
+    .hero-desc br {
+        display: none;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .switch-pill {
+        height: auto;
+        gap: 8px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .about-title,
+    .service-title-main {
+        font-size: 32px;
+    }
+
+    .service-title-switch,
+    .why-title,
+    .recruit-title,
+    .roadmap-title {
+        font-size: 36px;
+        letter-spacing: 1px;
+    }
+    
+    .roadmap-margin {
+    padding-bottom: 40px;
+    }
+
+    .about-item {
+        align-items: flex-start;
+        gap: 12px;
+        padding: 24px 16px;
+    }
+
+    .item-bullet {
+        display: none;
+    }
+
+    .item-title {
+        white-space: normal;
+        font-size: 20px;
+    }
+
+    .item-num {
+        font-size: 24px;
+    }
+
+    .feature-grid,
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .why-title {
+        white-space: normal;
+    }
+
+    .why-card {
+        min-height: 180px;
+    }
+
+    .timeline-card {
+        padding: 24px 20px;
+    }
+
+    .tl-item span:last-child {
+        white-space: normal;
+    }
+
+    .recruit-grid {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .recruit-card {
+        width: 100%;
+        min-width: 0;
+        padding: 32px 16px;
+    }
+
+    .recruit-title {
+        white-space: normal;
+    }
+}
