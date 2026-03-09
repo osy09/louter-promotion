@@ -15,31 +15,46 @@
     function animate() {
         const d = targetX - slider.scrollLeft;
         if (Math.abs(d) < 0.5) { slider.scrollLeft = targetX; raf = null; return; }
-        slider.scrollLeft += d * 0.14;
+        slider.scrollLeft += d * 0.18;
         raf = requestAnimationFrame(animate);
     }
 
+    function lock() {
+        if (locked) return;
+        locked = true;
+        section.scrollIntoView({ block: 'start', behavior: 'instant' });
+        document.body.style.overflow = 'hidden';
+    }
+
+    function unlock() {
+        locked = false;
+        document.body.style.overflow = '';
+    }
+
     window.addEventListener('wheel', function (e) {
-        const max  = getMax();
+        const max = getMax();
         if (max <= 5) return;
 
-        const top  = section.getBoundingClientRect().top;
+        const rect = section.getBoundingClientRect();
         const down = e.deltaY > 0;
 
         if (!locked) {
             if (down && done) return;
             if (!down) {
-                if (top > window.innerHeight * 0.5) { done = false; targetX = 0; }
+                if (rect.top > window.innerHeight * 0.5) { done = false; targetX = 0; }
                 return;
             }
-            if (top > 5 || top < -(section.offsetHeight - window.innerHeight * 0.3)) return;
-            locked = true;
+            if (rect.top <= 80 && rect.top >= -100) {
+                lock();
+            } else {
+                return;
+            }
         }
 
         e.preventDefault();
 
-        if (down && targetX >= max) { locked = false; done = true; return; }
-        if (!down && targetX <= 0)  { locked = false; return; }
+        if (down && targetX >= max) { unlock(); done = true; return; }
+        if (!down && targetX <= 0)  { unlock(); return; }
 
         targetX = Math.max(0, Math.min(max, targetX + e.deltaY));
         if (!raf) raf = requestAnimationFrame(animate);
