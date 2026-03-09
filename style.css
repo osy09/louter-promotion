@@ -1018,6 +1018,55 @@ body {
     .section-roadmap { height: 1477px; }
     .section-why { height: 693px; }
     .section-awards { height: auto; padding: 60px 30px; }
+
+    .awards-content {
+        position: static;
+        left: auto;
+        top: auto;
+        width: 100%;
+    }
+
+    .awards-header {
+        margin-bottom: 32px;
+    }
+
+    .awards-title {
+        font-size: 28px;
+    }
+
+    .awards-grid {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .award-card {
+        width: 100%;
+        height: auto;
+        min-height: 110px;
+        padding: 20px;
+        gap: 16px;
+    }
+
+    .award-text {
+        height: auto;
+        gap: 10px;
+    }
+
+    .award-name {
+        font-size: 15px;
+        word-break: keep-all;
+    }
+
+    .award-result {
+        font-size: 15px;
+    }
+
+    .award-thumb {
+        width: 100px;
+        height: 64px;
+        flex-shrink: 0;
+    }
+
     .section-recruit { height: 1028px; }
 
     .hero-left {
