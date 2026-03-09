@@ -42,6 +42,7 @@ body {
 .section-service,
 .section-roadmap,
 .section-why,
+.section-awards,
 .section-recruit {
     position: relative;
     width: 1512px;
@@ -52,6 +53,7 @@ body {
 .section-service { height: 1248px; background-color: #FFD600; }
 .section-roadmap { height: 1569px; background-color: #000000; }
 .section-why     { height: 911px;  background-color: #FFFFFF; }
+.section-awards  { height: 810px;  background-color: #FEF9E0; }
 .section-recruit { height: 911px;  background-color: #FFD600; }
 
 @media (min-width: 1513px) {
@@ -65,6 +67,7 @@ body {
     .section-service,
     .section-roadmap,
     .section-why,
+    .section-awards,
     .section-recruit {
         width: 1512px;
         margin-left: auto;
@@ -95,6 +98,11 @@ body {
 
     .section-why {
         box-shadow: 0 0 0 100vmax #FFFFFF;
+        clip-path: inset(0 -100vmax);
+    }
+
+    .section-awards {
+        box-shadow: 0 0 0 100vmax #FEF9E0;
         clip-path: inset(0 -100vmax);
     }
 
@@ -420,9 +428,15 @@ body {
     gap: 20px;
     height: 297px;
     width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+.feature-grid::-webkit-scrollbar {
+    display: none;
 }
 .feature-card {
-    flex: 1;
+    flex: 0 0 285px;
     background-color: #FFFFFF;
     border-radius: 10px;
     padding: 30px;
@@ -613,6 +627,98 @@ body {
     white-space: nowrap;
 }
 
+.awards-content {
+    position: absolute;
+    left: 156px;
+    top: 116px;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+}
+.awards-header {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 114px;
+}
+.awards-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.awards-title {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 700;
+    font-size: 50px;
+    letter-spacing: 2.5px;
+    color: #000000;
+    line-height: normal;
+}
+.awards-subtitle {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+    line-height: normal;
+}
+.awards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 38px 30px;
+    width: 100%;
+}
+.award-card {
+    width: 585px;
+    height: 195px;
+    background-color: #FFD600;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 40px 37px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.award-card:hover {
+    transform: scale(1.02);
+}
+.award-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 116px;
+    flex: 1;
+}
+.award-name {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    color: #544A12;
+    line-height: normal;
+}
+.award-result {
+    font-family: 'Paperlogy', sans-serif;
+    font-weight: 600;
+    font-size: 25px;
+    color: #000000;
+    line-height: normal;
+}
+.award-thumb {
+    width: 202px;
+    height: 116px;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.award-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .recruit-content {
     position: absolute;
     left: 156px;
@@ -724,6 +830,7 @@ body {
     .section-service,
     .section-roadmap,
     .section-why,
+    .section-awards,
     .section-recruit {
         width: 100%;
         height: auto;
@@ -737,6 +844,7 @@ body {
     .service-content,
     .roadmap-header,
     .why-content,
+    .awards-content,
     .recruit-content {
         position: static;
         left: auto;
@@ -757,6 +865,7 @@ body {
     .about-content,
     .service-content,
     .why-content,
+    .awards-content,
     .recruit-content {
         gap: 48px;
     }
@@ -838,6 +947,38 @@ body {
         white-space: normal;
     }
 
+    .awards-header {
+        margin-bottom: 48px;
+    }
+
+    .awards-title {
+        font-size: clamp(34px, 6vw, 50px);
+    }
+
+    .awards-grid {
+        gap: 20px;
+    }
+
+    .award-card {
+        width: calc(50% - 10px);
+        height: auto;
+        min-height: 170px;
+        padding: 30px;
+    }
+
+    .award-name {
+        font-size: 20px;
+    }
+
+    .award-result {
+        font-size: 20px;
+    }
+
+    .award-thumb {
+        width: 160px;
+        height: 96px;
+    }
+
     .recruit-grid {
         height: auto;
         flex-wrap: wrap;
@@ -863,6 +1004,7 @@ body {
     .section-service,
     .section-roadmap,
     .section-why,
+    .section-awards,
     .section-recruit {
         width: 100%;
         padding: 0;
@@ -875,6 +1017,7 @@ body {
     .section-service { height: auto; }
     .section-roadmap { height: 1477px; }
     .section-why { height: 693px; }
+    .section-awards { height: auto; padding: 60px 30px; }
     .section-recruit { height: 1028px; }
 
     .hero-left {

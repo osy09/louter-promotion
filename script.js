@@ -1,6 +1,6 @@
 (function () {
     const section = document.querySelector('.section-service');
-    const slider  = document.querySelector('.feature-grid-scroll');
+    const slider  = document.querySelector('.feature-grid');
     if (!section || !slider) return;
 
     let locked  = false;
