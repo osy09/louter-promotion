@@ -1,3 +1,77 @@
+(function () {
+    const section = document.querySelector('.section-service');
+    const scrollContainer = document.querySelector('.feature-grid-scroll');
+    if (!section || !scrollContainer) return;
+
+    function maxLeft() {
+        return scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    }
+
+    let targetLeft = 0;
+    let locked = false;
+    let passedEnd = false;
+    let rafId = null;
+
+    function tick() {
+        const diff = targetLeft - scrollContainer.scrollLeft;
+        if (Math.abs(diff) < 0.5) {
+            scrollContainer.scrollLeft = targetLeft;
+            rafId = null;
+            return;
+        }
+        scrollContainer.scrollLeft += diff * 0.14;
+        rafId = requestAnimationFrame(tick);
+    }
+
+    window.addEventListener('wheel', function (e) {
+        const max = maxLeft();
+        if (max <= 5) return;
+
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top;
+        const goingDown = e.deltaY > 0;
+
+        // 섹션 top이 뷰포트 상단에 닿으면 잠금 시작
+        if (!locked) {
+            // 아래로 스크롤 중이고, 이미 끝을 통과한 상태면 다시 잠금 안 함
+            if (goingDown && passedEnd) return;
+            // 위로 스크롤해서 돌아 올 때: passedEnd 리셋
+            if (!goingDown && sectionTop > window.innerHeight * 0.5) {
+                passedEnd = false;
+                targetLeft = 0;
+                return;
+            }
+            if (sectionTop <= 2 && rect.bottom >= window.innerHeight * 0.1) {
+                locked = true;
+            } else {
+                return;
+            }
+        }
+
+        // 잠금 상태: 아래 방향이고 이미 끝 → 잠금 해제 후 세로 스크롤 허용
+        if (goingDown && targetLeft >= max) {
+            locked = false;
+            passedEnd = true;
+            return;
+        }
+        // 위 방향이고 이미 처음 → 잠금 해제 후 세로 스크롤 허용
+        if (!goingDown && targetLeft <= 0) {
+            locked = false;
+            return;
+        }
+
+        e.preventDefault();
+        targetLeft = Math.max(0, Math.min(max, targetLeft + e.deltaY));
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(tick);
+    }, { passive: false });
+
+    // 수동 스크롤 시 targetLeft 동기화
+    scrollContainer.addEventListener('scroll', function () {
+        if (!locked) targetLeft = scrollContainer.scrollLeft;
+    });
+})();
+
 const revealSelectors = [
     '.hero-left',
     '.hero-right',
