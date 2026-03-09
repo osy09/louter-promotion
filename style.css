@@ -824,7 +824,7 @@ body {
     .recruit-grid .recruit-card:nth-child(3) { order: 3; }
 }
 
-@media (max-width: 530px) {
+@media (max-width: 720px) {
     body {
         min-width: 0;
         overflow-x: hidden;
@@ -842,7 +842,7 @@ body {
         display: block;
     }
 
-    .section-hero { height: 1168px; }
+    .section-hero { height: auto; padding: 60px 30px; display: flex; flex-direction: column; gap: 48px; }
     .section-about { height: 788px; }
     .section-service { height: 748px; }
     .section-roadmap { height: 1477px; }
@@ -850,10 +850,10 @@ body {
     .section-recruit { height: 1028px; }
 
     .hero-left {
-        position: absolute;
-        left: 57px;
-        top: 184px;
-        width: 236px;
+        position: static;
+        left: auto;
+        top: auto;
+        width: 100%;
         gap: 30px;
     }
 
@@ -873,8 +873,8 @@ body {
     }
 
     .hero-logo {
-        width: 236px;
-        height: 60px;
+        width: min(236px, 60%);
+        height: auto;
     }
 
     .hero-titles {
@@ -889,14 +889,14 @@ body {
     .hero-desc {
         font-size: 12px;
         line-height: 20px;
-        white-space: pre;
+        white-space: normal;
     }
 
     .hero-right {
-        position: absolute;
-        left: 57px;
-        top: 786px;
-        width: 288px;
+        position: static;
+        left: auto;
+        top: auto;
+        width: 100%;
         gap: 10px;
     }
 
@@ -936,15 +936,15 @@ body {
 
     .about-content {
         position: absolute;
-        left: 50%;
+        left: 30px;
         top: 130px;
-        width: 320px;
-        transform: translateX(-50%);
+        width: calc(100% - 60px);
+        transform: none;
         gap: 70px;
     }
 
     .about-header {
-        width: 247px;
+        width: 100%;
         gap: 30px;
     }
 
@@ -977,7 +977,7 @@ body {
     }
 
     .item-desc {
-        width: 268px;
+        width: 100%;
         font-size: 11px;
         line-height: normal;
     }
@@ -1001,10 +1001,10 @@ body {
 
     .service-content {
         position: absolute;
-        left: 50%;
+        left: 30px;
         top: 140px;
-        width: 320px;
-        transform: translateX(-50%);
+        width: calc(100% - 60px);
+        transform: none;
         gap: 70px;
     }
 
@@ -1076,7 +1076,7 @@ body {
         position: absolute;
         left: 30px;
         top: 160px;
-        width: 320px;
+        width: calc(100% - 60px);
         transform: none;
         gap: 15px;
     }
@@ -1144,15 +1144,15 @@ body {
 
     .why-content {
         position: absolute;
-        left: 50%;
+        left: 30px;
         top: 140px;
-        width: 320px;
-        transform: translateX(-50%);
+        width: calc(100% - 60px);
+        transform: none;
         gap: 70px;
     }
 
     .why-header {
-        width: 132px;
+        width: 100%;
         gap: 15px;
     }
 
@@ -1166,7 +1166,7 @@ body {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
-        width: 320px;
+        width: 100%;
         height: auto;
     }
 
@@ -1193,15 +1193,15 @@ body {
 
     .recruit-content {
         position: absolute;
-        left: 50%;
+        left: 30px;
         top: 140px;
-        width: 320px;
-        transform: translateX(-50%);
+        width: calc(100% - 60px);
+        transform: none;
         gap: 0;
     }
 
     .recruit-header {
-        width: 280px;
+        width: 100%;
         gap: 15px;
     }
 
