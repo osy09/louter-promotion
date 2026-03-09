@@ -31,11 +31,8 @@
         const sectionTop = rect.top;
         const goingDown = e.deltaY > 0;
 
-        // 섹션 top이 뷰포트 상단에 닿으면 잠금 시작
         if (!locked) {
-            // 아래로 스크롤 중이고, 이미 끝을 통과한 상태면 다시 잠금 안 함
             if (goingDown && passedEnd) return;
-            // 위로 스크롤해서 돌아 올 때: passedEnd 리셋
             if (!goingDown && sectionTop > window.innerHeight * 0.5) {
                 passedEnd = false;
                 targetLeft = 0;
@@ -48,13 +45,11 @@
             }
         }
 
-        // 잠금 상태: 아래 방향이고 이미 끝 → 잠금 해제 후 세로 스크롤 허용
         if (goingDown && targetLeft >= max) {
             locked = false;
             passedEnd = true;
             return;
         }
-        // 위 방향이고 이미 처음 → 잠금 해제 후 세로 스크롤 허용
         if (!goingDown && targetLeft <= 0) {
             locked = false;
             return;
@@ -66,7 +61,6 @@
         rafId = requestAnimationFrame(tick);
     }, { passive: false });
 
-    // 수동 스크롤 시 targetLeft 동기화
     scrollContainer.addEventListener('scroll', function () {
         if (!locked) targetLeft = scrollContainer.scrollLeft;
     });
