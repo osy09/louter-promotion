@@ -608,7 +608,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    width: 264px;
+    width: 560px;
 }
 .recruit-title {
     font-family: 'Paperlogy', sans-serif;
@@ -695,7 +695,7 @@ body {
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1510px) {
     body {
         min-width: 0;
         overflow-x: hidden;
@@ -764,17 +764,7 @@ body {
         max-width: none;
     }
 
-    .item-union-deco {
-        display: block;
-        left: auto;
-        right: 12px;
-        top: 0;
-        width: 22px;
-        height: 100px;
-        transform: scaleY(-1) rotate(180deg);
-        opacity: 0.85;
-    }
-
+    .item-union-deco,
     .list-union-deco {
         display: none;
     }
@@ -834,7 +824,7 @@ body {
     .recruit-grid .recruit-card:nth-child(3) { order: 3; }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 530px) {
     body {
         min-width: 0;
         overflow-x: hidden;
@@ -1084,10 +1074,10 @@ body {
 
     .roadmap-header {
         position: absolute;
-        left: 50%;
+        left: 30px;
         top: 160px;
         width: 320px;
-        transform: translateX(-50%);
+        transform: none;
         gap: 15px;
     }
 
@@ -1099,6 +1089,7 @@ body {
         font-size: 25px;
         letter-spacing: 0;
         white-space: nowrap;
+        text-align: left;
     }
 
     .roadmap-yellow {
@@ -1210,7 +1201,7 @@ body {
     }
 
     .recruit-header {
-        width: 170px;
+        width: 280px;
         gap: 15px;
     }
 
@@ -1218,7 +1209,7 @@ body {
         font-size: 25px;
         line-height: normal;
         letter-spacing: 1.25px;
-        white-space: normal;
+        white-space: nowrap;
     }
 
     .recruit-grid {
