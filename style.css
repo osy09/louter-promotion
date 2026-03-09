@@ -1022,18 +1022,12 @@ body {
     .feature-grid-scroll {
         width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
     }
 
     .feature-grid-scroll::-webkit-scrollbar {
-        height: 3px;
-    }
-    .feature-grid-scroll::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    .feature-grid-scroll::-webkit-scrollbar-thumb {
-        background: rgba(0,0,0,0.25);
-        border-radius: 2px;
+        display: none;
     }
 
     .feature-grid {
