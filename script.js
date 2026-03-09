@@ -40,22 +40,33 @@
         const down = deltaY > 0;
 
         if (!locked) {
-            if (down && done) return;
-            if (!down) {
-                if (rect.top > window.innerHeight * 0.5) { done = false; targetX = 0; }
-                return;
-            }
-            if (rect.top <= 80 && rect.top >= -100) {
-                lock();
+            if (down) {
+                if (done) return;
+                if (rect.top <= 80 && rect.top >= -100) {
+                    lock();
+                } else {
+                    return;
+                }
             } else {
-                return;
+                if (!done) {
+                    if (rect.top > window.innerHeight * 0.5) { done = false; targetX = 0; }
+                    return;
+                }
+                const bot = rect.bottom;
+                if (bot >= window.innerHeight - 100 && bot <= window.innerHeight + 80) {
+                    targetX = max;
+                    slider.scrollLeft = max;
+                    lock();
+                } else {
+                    return;
+                }
             }
         }
 
         if (e) e.preventDefault();
 
         if (down && targetX >= max) { unlock(); done = true; return; }
-        if (!down && targetX <= 0)  { unlock(); return; }
+        if (!down && targetX <= 0)  { unlock(); done = false; return; }
 
         targetX = Math.max(0, Math.min(max, targetX + deltaY));
         if (!raf) raf = requestAnimationFrame(animate);
