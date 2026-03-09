@@ -1,68 +1,52 @@
 (function () {
     const section = document.querySelector('.section-service');
-    const scrollContainer = document.querySelector('.feature-grid-scroll');
-    if (!section || !scrollContainer) return;
+    const slider  = document.querySelector('.feature-grid-scroll');
+    if (!section || !slider) return;
 
-    function maxLeft() {
-        return scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    let locked  = false;
+    let done    = false;
+    let targetX = 0;
+    let raf     = null;
+
+    function getMax() {
+        return slider.scrollWidth - slider.clientWidth;
     }
 
-    let targetLeft = 0;
-    let locked = false;
-    let passedEnd = false;
-    let rafId = null;
-
-    function tick() {
-        const diff = targetLeft - scrollContainer.scrollLeft;
-        if (Math.abs(diff) < 0.5) {
-            scrollContainer.scrollLeft = targetLeft;
-            rafId = null;
-            return;
-        }
-        scrollContainer.scrollLeft += diff * 0.14;
-        rafId = requestAnimationFrame(tick);
+    function animate() {
+        const d = targetX - slider.scrollLeft;
+        if (Math.abs(d) < 0.5) { slider.scrollLeft = targetX; raf = null; return; }
+        slider.scrollLeft += d * 0.14;
+        raf = requestAnimationFrame(animate);
     }
 
     window.addEventListener('wheel', function (e) {
-        const max = maxLeft();
+        const max  = getMax();
         if (max <= 5) return;
 
-        const rect = section.getBoundingClientRect();
-        const sectionTop = rect.top;
-        const goingDown = e.deltaY > 0;
+        const top  = section.getBoundingClientRect().top;
+        const down = e.deltaY > 0;
 
         if (!locked) {
-            if (goingDown && passedEnd) return;
-            if (!goingDown && sectionTop > window.innerHeight * 0.5) {
-                passedEnd = false;
-                targetLeft = 0;
+            if (down && done) return;
+            if (!down) {
+                if (top > window.innerHeight * 0.5) { done = false; targetX = 0; }
                 return;
             }
-            if (sectionTop <= 2 && rect.bottom >= window.innerHeight * 0.1) {
-                locked = true;
-            } else {
-                return;
-            }
-        }
-
-        if (goingDown && targetLeft >= max) {
-            locked = false;
-            passedEnd = true;
-            return;
-        }
-        if (!goingDown && targetLeft <= 0) {
-            locked = false;
-            return;
+            if (top > 5 || top < -(section.offsetHeight - window.innerHeight * 0.3)) return;
+            locked = true;
         }
 
         e.preventDefault();
-        targetLeft = Math.max(0, Math.min(max, targetLeft + e.deltaY));
-        if (rafId) cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(tick);
+
+        if (down && targetX >= max) { locked = false; done = true; return; }
+        if (!down && targetX <= 0)  { locked = false; return; }
+
+        targetX = Math.max(0, Math.min(max, targetX + e.deltaY));
+        if (!raf) raf = requestAnimationFrame(animate);
     }, { passive: false });
 
-    scrollContainer.addEventListener('scroll', function () {
-        if (!locked) targetLeft = scrollContainer.scrollLeft;
+    slider.addEventListener('scroll', function () {
+        if (!locked) targetX = slider.scrollLeft;
     });
 })();
 
