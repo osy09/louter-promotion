@@ -7,6 +7,7 @@
     let done    = false;
     let targetX = 0;
     let raf     = null;
+    let touchY  = null;
 
     function getMax() {
         return slider.scrollWidth - slider.clientWidth;
@@ -31,12 +32,12 @@
         document.body.style.overflow = '';
     }
 
-    window.addEventListener('wheel', function (e) {
+    function handleDelta(deltaY, e) {
         const max = getMax();
         if (max <= 5) return;
 
         const rect = section.getBoundingClientRect();
-        const down = e.deltaY > 0;
+        const down = deltaY > 0;
 
         if (!locked) {
             if (down && done) return;
@@ -51,14 +52,34 @@
             }
         }
 
-        e.preventDefault();
+        if (e) e.preventDefault();
 
         if (down && targetX >= max) { unlock(); done = true; return; }
         if (!down && targetX <= 0)  { unlock(); return; }
 
-        targetX = Math.max(0, Math.min(max, targetX + e.deltaY));
+        targetX = Math.max(0, Math.min(max, targetX + deltaY));
         if (!raf) raf = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('wheel', function (e) {
+        handleDelta(e.deltaY, e);
     }, { passive: false });
+
+    window.addEventListener('touchstart', function (e) {
+        touchY = e.touches[0].clientY;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', function (e) {
+        if (touchY === null) return;
+        const curY = e.touches[0].clientY;
+        const deltaY = (touchY - curY) * 2;
+        touchY = curY;
+        handleDelta(deltaY, locked ? e : null);
+    }, { passive: false });
+
+    window.addEventListener('touchend', function () {
+        touchY = null;
+    }, { passive: true });
 
     slider.addEventListener('scroll', function () {
         if (!locked) targetX = slider.scrollLeft;
