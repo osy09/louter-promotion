@@ -92,6 +92,27 @@
         touchY = null;
     }, { passive: true });
 
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', function () {
+        if (locked) return;
+        const max = getMax();
+        if (max <= 5) return;
+        const rect = section.getBoundingClientRect();
+        const scrollDown = window.scrollY > lastScrollY;
+        lastScrollY = window.scrollY;
+
+        if (scrollDown && !done && rect.top <= 80 && rect.top >= -200) {
+            lock();
+        } else if (!scrollDown && done) {
+            const bot = rect.bottom;
+            if (bot >= window.innerHeight - 200 && bot <= window.innerHeight + 80) {
+                targetX = max;
+                slider.scrollLeft = max;
+                lock();
+            }
+        }
+    }, { passive: true });
+
     slider.addEventListener('scroll', function () {
         if (!locked) targetX = slider.scrollLeft;
     });
