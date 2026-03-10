@@ -53,7 +53,7 @@ body {
 .section-service { height: 1248px; background-color: #FFD600; }
 .section-roadmap { height: 1569px; background-color: #000000; }
 .section-why     { height: 911px;  background-color: #FFFFFF; }
-.section-awards  { height: 810px;  background-color: #FEF9E0; }
+.section-awards  { height: 950px;  background-color: #FEF9E0; }
 .section-recruit { height: 911px;  background-color: #FFD600; }
 
 @media (min-width: 1513px) {
