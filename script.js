@@ -65,9 +65,26 @@
 
         if (e) e.preventDefault();
 
-        if (down && targetX >= max) { unlock(); done = true; return; }
-        if (!down && targetX <= 0)  { unlock(); done = false; return; }
+        if (down && targetX >= max) {
+            // Ensure fully scrolled to the end, then unlock and nudge page
+            targetX = max;
+            slider.scrollLeft = max;
+            unlock();
+            done = true;
+            // Nudge the page 1px to allow vertical scrolling to continue
+            window.requestAnimationFrame(() => window.scrollBy({ top: 1, left: 0, behavior: 'auto' }));
+            return;
+        }
 
+        if (!down && targetX <= 0) {
+            // Ensure fully scrolled to start, then unlock and nudge page up
+            targetX = 0;
+            slider.scrollLeft = 0;
+            unlock();
+            done = false;
+            window.requestAnimationFrame(() => window.scrollBy({ top: -1, left: 0, behavior: 'auto' }));
+            return;
+        }
         targetX = Math.max(0, Math.min(max, targetX + deltaY));
         if (!raf) raf = requestAnimationFrame(animate);
     }
