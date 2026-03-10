@@ -637,7 +637,6 @@ body {
 }
 
 @media (min-width: 1513px) {
-    /* 데스크탑에서 awards 섹션 아래 여백을 늘려 카드 아래 공간 확보 */
     .awards-content {
         padding-bottom: 80px;
     }
